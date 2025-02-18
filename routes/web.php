@@ -38,7 +38,7 @@ AdminloginStore');
 Route::view('admin/dashboard','admin.dashboard')->name('admin_dashboard');
 
 
-Route::get('/levels/create',[LevelController::class,'create'])->name('level.create');
+
 Route::post('/levels',[LevelController::class,'store'])->name('level.store');
 Route::get('/levels',[LevelController::class,'index'])->name('level');
 Route::get('/levels/{id}/edit',[LevelController::class,'edit'])->name('level.edit');

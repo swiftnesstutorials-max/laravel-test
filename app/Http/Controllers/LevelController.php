@@ -16,6 +16,12 @@ class LevelController extends Controller
         return view('level', ['levels' => $levels]);
     }
 
+    public function apiIndex()
+    {
+        $levels = Level::all();
+        return response()->json(['levels' => $levels]);
+    }
+
     /**
      * Show the form for creating a new resource.
      */
@@ -42,6 +48,21 @@ class LevelController extends Controller
             return redirect()->route('level')->with('success','class added successfully');
         }else{
             return redirect()->route('level')->withErrors($validator);
+        }
+    }
+
+    public function apiStore(Request $request)
+    {
+        $validator=validator::make($request->all(),[
+            'name'=>'required'
+        ]);
+        if($validator->passes()){
+            $level=Level::create([
+                'name'=>$request->name
+            ]);
+            return response()->json(['level' => $level], 201);
+        }else{
+            return response()->json(['errors' => implode(', ', $validator->messages()->all())], 403);
         }
     }
 
