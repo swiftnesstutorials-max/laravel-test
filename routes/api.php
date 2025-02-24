@@ -11,4 +11,4 @@ Route::get('/user', function (Request $request) {
 Route::get('/levels', [LevelController::class, 'apiIndex'])->name('apiLevels');
 Route::post('/levels', [LevelController::class, 'apiStore'])->name('apiStore');
 Route::post('/levels/{level}/update', [LevelController::class, 'apiUpdate'])->name('apiUpdate');
-Route::delete('/levels/{level}', [LevelController::class, 'apiDelete'])->name('apiDelete');
+Route::delete('/levels/{level}', [LevelController::class, 'apiDestroy'])->name('apiDestroy');
