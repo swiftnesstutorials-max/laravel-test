@@ -93,6 +93,13 @@ class LevelController extends Controller
         return redirect()->route('level.create');
     }
 
+    public function apiUpdate(Request $request, level $level)
+    {
+        $level->name=$request->name;
+        $level->save();
+        return response()->json(['level' => $level], 200);
+    }
+
     /**
      * Remove the specified resource from storage.
      */
@@ -100,5 +107,11 @@ class LevelController extends Controller
     {
         $level->delete();
         return redirect('level')->with('delete','delete successfully');
+    }
+
+    public function apiDestroy(level $level)
+    {
+        $level->delete();
+        return response()->json(['message' => 'level deleted'], 201);
     }
 }
